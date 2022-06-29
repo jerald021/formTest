@@ -1,0 +1,31 @@
+<form (submit)="onSubmit()" #formValues="ngForm">
+  <div>
+      <input [disabled]="isSent" type="text" placeholder="Name" name="name" required [(ngModel)] ="form.name" #nameInput="ngModel">
+      <p [ngClass]="{'error': nameInput.invalid}" *ngIf="nameInput.invalid && nameInput.touched">Por favor introduce un mail válido</p>
+  </div>
+  <div>
+    <input [disabled]="isSent" type="email" placeholder="E-mail" name="email" required email [(ngModel)] ="form.email" #emailInput="ngModel">
+    <p [ngClass]="{'error': emailInput.invalid}"  *ngIf="emailInput.invalid && emailInput.touched">Por favor introduce un mail válido</p>
+</div>
+<div>
+  <select [disabled]="isSent" name="occupation" [(ngModel)]="form.occupation" #occupationInput="ngModel">
+      <option value="user">User</option>
+      <option value="operator">Operator</option>
+      <option value="admin">Admin</option>
+  </select>
+  <p  [ngClass]="{'error': occupationInput.invalid}" *ngIf="occupationInput.invalid && occupationInput.touched">Por favor selecciona un rol</p>
+</div>
+
+<div>
+  <input [disabled]="isSent" type="text" placeholder="subject" name="subject" required subjectInput [(ngModel)] ="form.subject" #subjectInput="ngModel">
+  <p [ngClass]="{'error': subjectInput.invalid}" *ngIf="subjectInput.invalid && subjectInput.touched">Por favor introduce un mail válido</p>
+</div>
+
+<div>
+  <textarea [disabled]="isSent" maxlength="255" minlength="10" type="text" placeholder="content" name="content" required contentInput [(ngModel)] ="form.content" #contentInput="ngModel">
+
+  </textarea>
+</div>
+
+  <button [disabled]="formValues.invalid || isSent" type="submit">Enviar</button>
+</form>
